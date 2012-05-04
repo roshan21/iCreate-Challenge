@@ -1,3 +1,3 @@
-git pull --rebase https://github.com/roshan21/iCreate-Challengehttps://github.com/roshan21/iCreate-Challenge
+git pull --rebase https://github.com/roshan21/iCreate-Challenge
 
 Hahacheck
