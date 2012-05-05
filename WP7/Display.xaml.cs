@@ -47,7 +47,7 @@ namespace WP7
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            string url = "https://ivle.nus.edu.sg/API/Lapi.svc/Announcements?APIKey=" + API_Key + "&AuthToken=" + API_Token + "&CourseID=CS3271" + "&Duration=43200" + "&TitleOnly=" + "true";
+            string url = "https://ivle.nus.edu.sg/API/Lapi.svc/Announcements?APIKey=" + API_Key + "&AuthToken=" + API_Token + "&CourseID=CS4273" + "&Duration=43200" + "&TitleOnly=" + "true";
             var webRequest = (HttpWebRequest)HttpWebRequest.Create(url);
             webRequest.BeginGetResponse(new AsyncCallback(request_CallBack), webRequest);
 

@@ -26,3 +26,17 @@ C:\Users\Vin\Documents\WP7\obj\Debug\WP7.g.resources
 C:\Users\Vin\Documents\WP7\obj\Debug\WP7.dll
 C:\Users\Vin\Documents\WP7\obj\Debug\WP7.pdb
 C:\Users\Vin\Documents\WP7\obj\Debug\XapCacheFile.xml
+C:\Users\sidd\Desktop\iCreate\InteractIvle\WP7\Bin\Debug\ApplicationIcon.png
+C:\Users\sidd\Desktop\iCreate\InteractIvle\WP7\Bin\Debug\Background.png
+C:\Users\sidd\Desktop\iCreate\InteractIvle\WP7\Bin\Debug\WP7.dll
+C:\Users\sidd\Desktop\iCreate\InteractIvle\WP7\Bin\Debug\WP7.pdb
+C:\Users\sidd\Desktop\iCreate\InteractIvle\WP7\Bin\Debug\AppManifest.xaml
+C:\Users\sidd\Desktop\iCreate\InteractIvle\WP7\Bin\Debug\WP7.xap
+C:\Users\sidd\Desktop\iCreate\InteractIvle\WP7\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\sidd\Desktop\iCreate\InteractIvle\WP7\obj\Debug\App.g.i.cs
+C:\Users\sidd\Desktop\iCreate\InteractIvle\WP7\obj\Debug\Display.g.i.cs
+C:\Users\sidd\Desktop\iCreate\InteractIvle\WP7\obj\Debug\MainPage.g.i.cs
+C:\Users\sidd\Desktop\iCreate\InteractIvle\WP7\obj\Debug\WP7.g.resources
+C:\Users\sidd\Desktop\iCreate\InteractIvle\WP7\obj\Debug\WP7.dll
+C:\Users\sidd\Desktop\iCreate\InteractIvle\WP7\obj\Debug\WP7.pdb
+C:\Users\sidd\Desktop\iCreate\InteractIvle\WP7\obj\Debug\XapCacheFile.xml

@@ -1,0 +1,16 @@
+1. Splashscreen
+
+2. Login screen
+
+3. Announcements
+4. Home button, app name, page name, photo
+4. Module names - Horizontal tab scrolling (thin)
+4. All announcements
+
+3. Forum
+4. Home button, app name, page name, photo
+4. Module names - Horizontal tab scrolling (thin)
+4. 
+
+
+3. Organizer
