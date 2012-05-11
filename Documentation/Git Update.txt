@@ -1,3 +1,4 @@
-git pull --rebase https://github.com/roshan21/iCreate-Challenge
+git pull --rebase git@github.com:roshan21/iCreate-Challenge.git
+
 
 Hahacheck
