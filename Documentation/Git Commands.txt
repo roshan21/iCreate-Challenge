@@ -19,10 +19,26 @@ Git Commands
 
 3.) Commit:
 
-	git commit -a -m "Descriptive comment." 
+	i.) For modifies file:
+	
+	git commit -a -m "~ Descriptive comment." 
 	# Follow the style as told by vati: + for addition, ~ for modification, - for deletion
 	
 	git push -all
+	
+	ii.) For newly added files:
+	
+	git add <file path>
+	e.g.
+	git add Documentation/Git\ Commands.txt
+	
+	git commit -a -m "+ Added file."
+	git push -all
+	
+	# We cant automate commit and push as they need to be separate steps
+	# Commit - To local repo
+	# Push - To central repo
+	# Anyways we need to give a commit message which changes from commit to commit
 	
 4.) Pull:
 
@@ -30,3 +46,7 @@ Git Commands
 	git merge master
 	
 	#.. fix any merge conflicts ..
+
+# This is probably the same as what we do from GUI, but slightly simpler as there are no clicks involved.
+# All authentication is in command line. I'll check out on how to resolve conflicts.
+	
