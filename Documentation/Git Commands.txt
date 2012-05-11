@@ -1,0 +1,32 @@
+Git Commands
+
+1.) Right click on Local repo and click on "Git Bash here"
+
+2.) Do this once:
+	
+	i.) 
+	git config --global user.name "<username>"  
+	
+	# e.g.
+	git config --global user.name "srinivas"
+	
+	ii.) 
+	git config --global user.email "<email>"
+	
+	# e.g.
+	git config --global user.email "kidambisrinivas@gmail.com"
+	git config --global user.email "kidambisrinivas@gmail.com"
+
+3.) Commit:
+
+	git commit -a -m "Descriptive comment." 
+	# Follow the style as told by vati: + for addition, ~ for modification, - for deletion
+	
+	git push -all
+	
+4.) Pull:
+
+	git fetch
+	git merge master
+	
+	#.. fix any merge conflicts ..
