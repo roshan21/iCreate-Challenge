@@ -47,6 +47,16 @@ Git Commands
 	
 	#.. fix any merge conflicts ..
 
+5.) Commit command commits only to local repo. To reject all changes to local repo:
+
+	git reset --hard
+
+    if u don wanna permanently delete ur new files:
+
+	git stash save 'Some changes'
+
+6.) git checkout filename(s)
+
 # This is probably the same as what we do from GUI, but slightly simpler as there are no clicks involved.
 # All authentication is in command line. I'll check out on how to resolve conflicts.
 	
