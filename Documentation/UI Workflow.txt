@@ -20,3 +20,9 @@ No - Level (depth) of page
 3. Organizer
 4. App banner, Day, Date
 4. Day timetable- UI similar to http://blog.genggao.net/inspiration/beautifully-designed-mobile-applications-showcase-2/
+
+
+
+1.) Install Silverlight for windows phone toolkit: http://silverlight.codeplex.com/releases/view/60291
+2.) Steps to set it up in project: http://www.windowsphonegeek.com/articles/wp7-transitions-in-depth--key-concepts-and-api
+3.) Cool transitions: http://www.windowsphonegeek.com/articles/Windows-Phone-7-Navigation-Transitions-Step-By-Step-guide
