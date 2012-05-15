@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="WP7.UIAnnouncements"
+    x:Class="WP7.UIForum"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -22,13 +22,14 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="PageTitle" Text="Announcements" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontSize="60" />
+            <TextBlock x:Name="ApplicationTitle" Text="interactivle 4M" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="Forum" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <TextBox Height="615" HorizontalAlignment="Left" Margin="0,35,0,0" Name="textBox1" Text="" VerticalAlignment="Top" Width="456" TextWrapping="Wrap" />
-            <TextBlock Height="34" HorizontalAlignment="Left" Margin="21,7,0,0" Name="textBlock1" Text="Module" VerticalAlignment="Top" Width="226" />
+            <ListBox Height="45" HorizontalAlignment="Left" Name="listBox1" VerticalAlignment="Top" Width="450" Style="{StaticResource HorizontalListBox}"/>
+            <TextBox Height="490" HorizontalAlignment="Left" Margin="12,51,0,0" Name="textBox1" Text="TextBox" VerticalAlignment="Top" Width="420" TextWrapping="Wrap" />
         </Grid>
     </Grid>
  

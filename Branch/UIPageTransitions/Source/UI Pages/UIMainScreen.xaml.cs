@@ -15,7 +15,7 @@ namespace WP7
 {
     public partial class UIMainScreen : PhoneApplicationPage
     {
-        private string API_Key, API_Token;
+        private string API_Token;
 
         public UIMainScreen()
         {
@@ -28,14 +28,19 @@ namespace WP7
             {
                 this.API_Token = this.NavigationContext.QueryString["token"];
             }
-            this.API_Key = cLAPI.APIKey;
+            //this.API_Key = cLAPI.APIKey;
 
             base.OnNavigatedTo(e);
         }
 
         private void btn_Announcements_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/UIAnnouncements.xaml?token=" + API_Token.ToString(), UriKind.Relative));
+            NavigationService.Navigate(new Uri("/UI Pages/UIAnnouncements.xaml?token=" + API_Token.ToString(), UriKind.Relative));
+        }
+
+        private void btn_Forum_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/UI Pages/UIForum.xaml?token=" + API_Token.ToString(), UriKind.Relative));
         }
     }
 }

@@ -26,3 +26,7 @@ No - Level (depth) of page
 1.) Install Silverlight for windows phone toolkit: http://silverlight.codeplex.com/releases/view/60291
 2.) Steps to set it up in project: http://www.windowsphonegeek.com/articles/wp7-transitions-in-depth--key-concepts-and-api
 3.) Cool transitions: http://www.windowsphonegeek.com/articles/Windows-Phone-7-Navigation-Transitions-Step-By-Step-guide
+4.) Custom transitions: http://www.windowsphonegeek.com/articles/wp7-transitions-in-depth--custom-transitions
+			http://www.windowsphonegeek.com/articles/wp7-transitions-in-depth--key-concepts-and-api
+5.) How to add a horizontal scroll bar: http://stackoverflow.com/questions/4581380/how-do-i-get-a-horizontal-listbox-to-scroll-horizontally-in-wp7
+6.) Use laptop Keyboard for emulator: http://jigar-mehta.blogspot.in/2011/01/how-to-write-using-computer-keyboard-in.html

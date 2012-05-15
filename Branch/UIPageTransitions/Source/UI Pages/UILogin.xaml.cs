@@ -13,10 +13,10 @@ using Microsoft.Phone.Controls;
 
 namespace WP7
 {
-    public partial class Mainpage : PhoneApplicationPage
+    public partial class UILogin : PhoneApplicationPage
     {
         // Constructor
-        public Mainpage()
+        public UILogin()
         {
             InitializeComponent();
         }
@@ -41,7 +41,7 @@ namespace WP7
 
                         //5. Now navigate to the main app
                         //NavigationService.Navigate(new Uri("/Display.xaml?token=" + IVLE_Token.ToString(), UriKind.Relative));
-                        NavigationService.Navigate(new Uri("/UIMainScreen.xaml?token=" + IVLE_Token.ToString(), UriKind.Relative));
+                        NavigationService.Navigate(new Uri("/UI Pages/UIMainScreen.xaml?token=" + IVLE_Token.ToString(), UriKind.Relative));
                     }
                 }
                 else

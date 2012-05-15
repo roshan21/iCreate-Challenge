@@ -7,6 +7,18 @@
 
     <!--Application Resources-->
     <Application.Resources>
+        <Style TargetType="ListBox" x:Name="HorizontalListBox">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal" 
+                                            IsItemsHost="True" 
+                                            CanHorizontallyScroll="True" 
+                                            CanVerticallyScroll="False"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

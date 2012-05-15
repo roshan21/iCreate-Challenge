@@ -51,25 +51,33 @@
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Servicemodel.Web" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="cLAPI.cs" />
-    <Compile Include="UIMainScreen.xaml.cs">
+    <Compile Include="AppRes\cLAPI.cs" />
+    <Compile Include="AppRes\JSONParser.cs" />
+    <Compile Include="Data\Modules.cs" />
+    <Compile Include="UI Pages\UIForum.xaml.cs">
+      <DependentUpon>UIForum.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI Pages\UIMainScreen.xaml.cs">
       <DependentUpon>UIMainScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UIAnnouncements.xaml.cs">
+    <Compile Include="UI Pages\UIAnnouncements.xaml.cs">
       <DependentUpon>UIAnnouncements.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Mainpage.xaml.cs">
-      <DependentUpon>Mainpage.xaml</DependentUpon>
+    <Compile Include="UI Pages\UILogin.xaml.cs">
+      <DependentUpon>UILogin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,15 +86,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="UIMainScreen.xaml">
+    <Page Include="UI Pages\UIForum.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UIAnnouncements.xaml">
+    <Page Include="UI Pages\UIMainScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Mainpage.xaml">
+    <Page Include="UI Pages\UIAnnouncements.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI Pages\UILogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -96,13 +108,16 @@
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ApplicationIcon.png">
+    <Content Include="AppRes\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Background.png">
+    <Content Include="AppRes\Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SplashScreenImage.jpg" />
+    <Content Include="AppRes\SplashScreenImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

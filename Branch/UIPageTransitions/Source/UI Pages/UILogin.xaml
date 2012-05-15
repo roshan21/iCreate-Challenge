@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="WP7.Mainpage"
+    x:Class="WP7.UILogin"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -44,7 +44,7 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBox Height="72" Name="textBox1" Text="4M" Width="460" Background="Transparent" Foreground="#FFF5FCD8" />
+            <TextBox Height="72" Name="textBox1" Text="interactivle 4M" Width="460" Background="Transparent" Foreground="#FFF5FCD8" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
