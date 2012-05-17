@@ -8,31 +8,32 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 
 namespace WP7.Data
 {
-    public class Modules
+    [DataContract]
+    public class Module
     {
-        string courseCode;
-        string courseName;
-        string id;
-
-        public string CourseCode
+        public Module()
         {
-            get { return courseCode; }
-            set { courseCode = value; }
         }
 
-        public string CourseName
+        public Module(string a, string b, string c)
         {
-            get { return courseName; }
-            set { courseName = value; }
+            CourseCode = a;
+            CourseName = b;
+            ID = c;
         }
 
-        public string ID
-        {
-            get { return id; }
-            set { id = value; }
-        }
+        [DataMember(Name = "CourseCode")]
+        public string CourseCode { get; set; }
+
+        [DataMember(Name = "CourseName")]
+        public string CourseName { get; set; }
+
+        [DataMember(Name = "ID")]   //mapping: ID -> ID
+        public string ID { get; set; }
     }
 }

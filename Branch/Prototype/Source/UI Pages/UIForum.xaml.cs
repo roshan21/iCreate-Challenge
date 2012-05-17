@@ -14,19 +14,18 @@ using Microsoft.Phone.Controls;
 using System.Xml;
 using System.Xml.Linq;
 using WP7.Data;
-using WP7.AppRes;
+using System.Text;
 
 namespace WP7
 {
     public partial class UIForum : PhoneApplicationPage
     {
         private string API_Key, AuthToken;
-        List<Modules> moduleList;
-        List<string> moduleCodes;
+        List<Module> modules;        
 
         public UIForum()
         {
-            InitializeComponent();
+            InitializeComponent();             
         }
 
         private void request_CallBack(IAsyncResult result)
@@ -37,25 +36,30 @@ namespace WP7
 
             // if you want to read string response
             using (var reader = new StreamReader(baseStream))
-            {
+            {                
                 var Result = reader.ReadToEnd();
-                Deployment.Current.Dispatcher.BeginInvoke(() => { textBox1.Text = Result.ToString(); });                
-                
-                var entry = XDocument.Parse(Result.ToString());
-                
-                var data = from query in entry.Descendants("Data_Module")
-                           select new Modules
-                           {
-                               CourseCode = (string)query.Element("CourseCode"),
-                               CourseName = (string)query.Element("CourseName"),
-                               ID = (string)query.Element("ID")
-                           };
-                moduleList = data.ToList();
+                List<Button> btns = new List<Button>();
 
-                for (int i = 0; i < moduleList.Count; i++)
-                    moduleCodes.Add(moduleList[i].CourseCode);
-                Deployment.Current.Dispatcher.BeginInvoke(() => { listBox1.ItemsSource = moduleCodes; });                
-                                
+                modules = JSONParser.Parse(Result.ToString());
+                modules.Add(new Module("Dummy1","ABCD","1234"));
+                modules.Add(new Module("Dummy2", "ABCD", "1234"));
+                modules.Add(new Module("Dummy3", "ABCD", "1234"));
+
+                //Deployment.Current.Dispatcher.BeginInvoke(() => { textBox1.Text = Result.ToString(); });
+                Deployment.Current.Dispatcher.BeginInvoke(() => {
+                    for (int i = 0; i < modules.Count(); i++)
+                    {
+                        Button btn = new Button();
+                        btn.Height = 60;
+                        btn.Width = 130;
+                        btn.FontSize = 16;
+                        btn.Name = "btn_module" + (i + 1).ToString();
+                        btn.Content = modules[i].CourseCode;
+                        btn.Margin = new Thickness(3);                                              
+                        btns.Add(btn);
+                    }
+                    listBox1.ItemsSource = btns;                     
+                });                                                
                 System.Diagnostics.Debug.WriteLine(Result.ToString());
             }
         }
@@ -68,7 +72,7 @@ namespace WP7
         private void getModules()
         {
             String url = "https://ivle.nus.edu.sg/api/Lapi.svc/Modules?APIKey=" + API_Key + "&AuthToken=" + AuthToken + "&Duration=" 
-                                    + "10" + "&IncludeAllInfo=true";
+                                    + "10" + "&IncludeAllInfo=true" + "&output=json";
             var webRequest = (HttpWebRequest)HttpWebRequest.Create(url);            
             webRequest.BeginGetResponse(new AsyncCallback(request_CallBack), webRequest);            
         }

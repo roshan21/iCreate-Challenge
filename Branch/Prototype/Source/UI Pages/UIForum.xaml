@@ -38,20 +38,20 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="136"/>
+            <RowDefinition Height="632*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+        <StackPanel x:Name="TitlePanel" Margin="12,17,0,6">
             <TextBlock x:Name="ApplicationTitle" Text="interactivle 4M" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Forum" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Text="Forum" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Height="86" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox Height="45" HorizontalAlignment="Left" Name="listBox1" VerticalAlignment="Top" Width="450" Style="{StaticResource HorizontalListBox}"/>
-            <TextBox Height="490" HorizontalAlignment="Left" Margin="12,51,0,0" Name="textBox1" Text="TextBox" VerticalAlignment="Top" Width="420" TextWrapping="Wrap" />
+            <ListBox Height="55" HorizontalAlignment="Left" Name="listBox1" VerticalAlignment="Top" Width="450" Style="{StaticResource HorizontalListBox}" 
+                     ScrollViewer.HorizontalScrollBarVisibility="auto" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
         </Grid>
     </Grid>
  

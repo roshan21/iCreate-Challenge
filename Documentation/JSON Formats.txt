@@ -41,3 +41,9 @@ CourseName
 ID
 Title
 
+C# JSON Parser: http://blog.clauskonrad.net/2010/11/wp7-how-to-consume-json-data-from.html
+HeaderS: http://stackoverflow.com/questions/8639421/json-parsing-in-windows-phone-7
+
+JSON .NET 3rd part library usage: http://stackoverflow.com/questions/7647651/c-sharp-datacontractjsonserializer-fails-when-value-can-be-an-array-or-a-single
+http://stackoverflow.com/questions/7626717/how-to-parse-json-to-a-dynamic-object-on-windows-phone-7/7626755#7626755
+

@@ -18,7 +18,11 @@
                     </ItemsPanelTemplate>
                 </Setter.Value>
             </Setter>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="Margin" Value="0,10,0,0"/>            
         </Style>
+                             
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
