@@ -13,7 +13,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace WP7
+namespace InteractIVLE
 {
     public partial class App : Application
     {

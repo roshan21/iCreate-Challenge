@@ -12,7 +12,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 
-namespace WP7
+namespace InteractIVLE
 {
     public partial class UIAnnouncements : PhoneApplicationPage
     {

@@ -13,7 +13,7 @@ using System.Collections.Generic;
 //using System.Runtime.Serialization;
 //using System.Runtime.Serialization.Json;
 
-namespace WP7.Data
+namespace InteractIVLE.Data
 {
     public class Forum
     {

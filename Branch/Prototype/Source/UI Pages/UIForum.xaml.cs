@@ -14,21 +14,25 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.Xml;
 using System.Xml.Linq;
-using WP7.Data;
 using System.Text;
+using System.Collections.ObjectModel;
 
+using InteractIVLE.Data;
 //using Microsoft.Phone.Tasks;
 
-namespace WP7
+namespace InteractIVLE
 {    
     public partial class UIForum : PhoneApplicationPage
     {
         private string API_Key, AuthToken;
-        List<Module> modules;        
+        List<Module> modules;
+        List<ForumPost> forumPosts;
+        ForumPosts obsForumPosts;
 
         public UIForum()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            obsForumPosts = new ForumPosts();
         }
 
         private void getForumHeadings(int moduleIndex, int forumIndex)
@@ -102,7 +106,12 @@ namespace WP7
             using (var reader = new StreamReader(baseStream))
             {
                 var Result = reader.ReadToEnd();
-                //Deployment.Current.Dispatcher.BeginInvoke(() => { textBox1.Text = Result.ToString(); });                                
+
+                forumPosts = JSONParser.ParseForumThreads(Result.ToString());                
+                Deployment.Current.Dispatcher.BeginInvoke(() => {
+                    forumPosts.ToList().ForEach(obsForumPosts.Add);
+                    listBox2.ItemsSource = obsForumPosts; 
+                });                                
             }
         }
 

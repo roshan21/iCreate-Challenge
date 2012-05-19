@@ -16,7 +16,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace WP7.Data
+namespace InteractIVLE.Data
 {
     public class JSONParser
     {
@@ -56,6 +56,36 @@ namespace WP7.Data
             }
 
             return modules;
+        }
+
+        public static List<ForumPost> ParseForumThreads(String input)
+        {
+            JObject json = JObject.Parse(input);
+
+            List<ForumPost> posts = new List<ForumPost>();
+            JArray jHeadings = json["Results"] as JArray;
+
+            // Multiple headings in current forum
+            foreach (var jHeading in jHeadings)
+            {
+                JArray jPosts = jHeading["Threads"] as JArray;
+
+                foreach (var jPost in jPosts)
+                {
+                    ForumPost newPost = new ForumPost();
+                    newPost.Heading = jPost["PostTitle"].ToString();
+                    newPost.Timestamp = jPost["PostDate_js"].ToString();
+                    newPost.Type = jPost["isSurveyPost"].ToString();
+                    newPost.Author = jPost["Poster"]["Name"].ToString();
+                    newPost.Votes = 0;
+                    newPost.Answers = 0;
+                    newPost.Number = 0;                    
+                                        
+                    posts.Add(newPost);
+                }
+            }
+
+            return posts;
         }
 
         // Sample Functor to extract sub-lists from a json object
