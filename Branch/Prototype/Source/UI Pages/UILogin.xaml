@@ -54,7 +54,7 @@
                 <ColumnDefinition Width="395*" />
             </Grid.ColumnDefinitions>
             <phone:WebBrowser HorizontalAlignment="Left" Margin="12,21,0,0" Name="wb_Login" VerticalAlignment="Top" Navigated="wb_Login_Navigated" VerticalContentAlignment="Top" Height="281" Width="438" IsScriptEnabled="True" Grid.ColumnSpan="2" />
-            <Button Content="Login" Grid.Column="1" Height="72" HorizontalAlignment="Left" Margin="77,320,0,0" Name="button1" VerticalAlignment="Top" Width="160" Click="button1_Click" />
+            <Button Content="Login" Grid.Column="1" Height="72" HorizontalAlignment="Left" Margin="77,320,0,0" Name="button1" VerticalAlignment="Top" Width="160" Click="button1_Click" Visibility="Collapsed" />
         </Grid>
     </Grid>
  

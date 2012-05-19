@@ -50,11 +50,14 @@ namespace WP7
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
+        {            
+            //wb_Login.IsEnabled = false;
+            //wb_Login.Visibility = Visibility.Collapsed;
+
             //1. Show the web browser and redirect user to the login pageg
-            wb_Login.IsEnabled = false;
-            wb_Login.Visibility = Visibility.Collapsed;
-           
+            wb_Login.IsEnabled = true;
+            wb_Login.Visibility = Visibility.Visible;
+            wb_Login.Navigate(new Uri(cLAPI.LoginURL));
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

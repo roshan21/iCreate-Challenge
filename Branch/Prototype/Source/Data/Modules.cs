@@ -8,12 +8,20 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
+using System.Collections.Generic;
+
+//using System.Runtime.Serialization;
+//using System.Runtime.Serialization.Json;
 
 namespace WP7.Data
 {
-    [DataContract]
+    public class Forum
+    {
+        public string ForumID { get; set; }
+        public string Title { get; set; }        
+    }
+
+    //[DataContract]
     public class Module
     {
         public Module()
@@ -27,13 +35,10 @@ namespace WP7.Data
             ID = c;
         }
 
-        [DataMember(Name = "CourseCode")]
-        public string CourseCode { get; set; }
-
-        [DataMember(Name = "CourseName")]
+        //[DataMember(Name = "CourseCode")]
+        public string CourseCode { get; set; }        
         public string CourseName { get; set; }
-
-        [DataMember(Name = "ID")]   //mapping: ID -> ID
         public string ID { get; set; }
+        public List<Forum> forums;
     }
 }

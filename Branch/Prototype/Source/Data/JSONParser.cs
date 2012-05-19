@@ -13,7 +13,6 @@ using System.Windows.Shapes;
 using System.Collections.Generic;
 using System.Linq;
 
-using System.Runtime.Serialization.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -21,16 +20,16 @@ namespace WP7.Data
 {
     public class JSONParser
     {
-        public static object Deserialize(Stream streamObject, Type serializedObjectType)
-        {
-            if (serializedObjectType == null || streamObject == null)
-                return null;
+        //public static object Deserialize(Stream streamObject, Type serializedObjectType)
+        //{
+        //    if (serializedObjectType == null || streamObject == null)
+        //        return null;
 
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(serializedObjectType);
-            return ser.ReadObject(streamObject);
-        }
+        //    DataContractJsonSerializer ser = new DataContractJsonSerializer(serializedObjectType);
+        //    return ser.ReadObject(streamObject);
+        //}
 
-        public static List<Module> Parse(String input)
+        public static List<Module> ParseModules(String input)
         {
             JObject json = JObject.Parse(input);
 
@@ -43,6 +42,16 @@ namespace WP7.Data
                 newModule.CourseCode = jModule["CourseCode"].ToString();
                 newModule.CourseName = jModule["CourseName"].ToString();
                 newModule.ID = jModule["ID"].ToString();
+
+                var jForumIDs = jModule["Forums"];
+                if (jForumIDs is JArray)
+                {
+                    newModule.forums = jForumIDs.Children().Select(MapForumID()).ToList();
+                }
+                else
+                {
+                    newModule.forums = new List<Forum>() { MapForumID().Invoke(jForumIDs) };
+                }
                 modules.Add(newModule);
             }
 
@@ -66,6 +75,15 @@ namespace WP7.Data
                 CourseCode = (string)json["CourseCode"],
                 CourseName = (string)json["CourseName"],
                 ID = (string)json["ID"]
+            };
+        }
+
+        private static Func<JToken, Forum> MapForumID()
+        {
+            return json => new Forum
+            {
+                ForumID = (string)json["ID"],
+                Title = (string)json["Title"]                
             };
         }
     }

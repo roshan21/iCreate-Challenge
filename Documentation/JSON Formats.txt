@@ -1,49 +1,50 @@
+Online JSON Viewer: http://jsonviewer.stack.hu/
+Copy paste content from Forum_Headings.txt
+
 1.) Module List API results
 {"Results":[{"Announcements":[],"Forums":[{"ID":"63558881-b29e-44da-9c58-2d869a7b2dc7","Title":"iCreate Mobility Challenge 2012","ExpiryDate":"\/Date(1346428740000+0800)\/","ExpiryDate_js":"2012-08-31T23:59:00","WelcomeMessage":null,"BadgeTool":0,"Headings":[],"hasItems":false,"SortingOrder":0}],"Workbins":[],"Webcasts":[],"Gradebooks":[],"Polls":[],"ID":"56d5a448-9129-4b63-b838-17783eab8bff","CourseLevel":"1","CourseCode":"iCMC2012","CourseName":"iCreate Mobility Challenge 2012","CourseDepartment":"","CourseSemester":"Semester 2","CourseAcadYear":"2011/2012","CourseOpenDate":"\/Date(1327939200000+0800)\/","CourseOpenDate_js":"2012-01-31T00:00:00","CourseCloseDate":"\/Date(1346428740000+0800)\/","CourseCl
 
 JSON Elements:
 
-Announcements
-Forums
-Title
-ExpiryDate
-CourseDepartment
-ExpiryDate_js
-WelcomeMessage
-BadgeTool
-Headings
-hasItems
-SortingOrder
-Workbins
-Webcasts
-Gradebooks
-Polls
-ID
-CourseLevel
-CourseCode
-CourseName
-CourseDepartment
-CourseSemester
-CourseAcadYear
-CourseOpenDate
-CourseOpenDate_js
-CourseCloseDate
+Announcements,Forums,Title,ExpiryDate,CourseDepartment,ExpiryDate_js,WelcomeMessage,BadgeTool,Headings,hasItems,SortingOrder,Workbins,Webcasts
+Gradebooks,Polls,ID,CourseLevel,CourseCode,CourseName,CourseDepartment,CourseSemester,CourseAcadYear,CourseOpenDate,CourseOpenDate_js,CourseCloseDate
 CourseCloseDate_js
-
-XML elements
-	
-Results
-Data_Module
-Announcements
-Badge		
-CourseCode
-CourseName		
-ID
-Title
 
 C# JSON Parser: http://blog.clauskonrad.net/2010/11/wp7-how-to-consume-json-data-from.html
 HeaderS: http://stackoverflow.com/questions/8639421/json-parsing-in-windows-phone-7
 
 JSON .NET 3rd part library usage: http://stackoverflow.com/questions/7647651/c-sharp-datacontractjsonserializer-fails-when-value-can-be-an-array-or-a-single
 http://stackoverflow.com/questions/7626717/how-to-parse-json-to-a-dynamic-object-on-windows-phone-7/7626755#7626755
+
+2.) Forum Headings API results:
+
+JSON Elements:
+
+Results
+	ID				String
+	Title			String
+	isArchive		Boolean
+	HeadingOrder	Integer
+	BadgeHeading	Integer
+	isRead 			Boolean
+	isNewPost		Boolean
+	
+	Threads			JArray
+					ID					String
+					PostTitle			String
+					PostBody			String (HTML formatted string)
+					PostDate			String
+					PostDate_js			String
+					
+					Poster				JArray
+					
+										UserID				String
+										Name				String
+										Email				String
+										Title				String
+										UserGuid			String
+										isSurveyPost		Boolean
+										PostAttachment		""
+										
+										Threads				JArray
 

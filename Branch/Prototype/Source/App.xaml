@@ -18,11 +18,26 @@
                     </ItemsPanelTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
             <Setter Property="Margin" Value="0,10,0,0"/>            
         </Style>
-                             
+
+        <Style TargetType="ListBox" x:Name="VerticalListBox">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Vertical" 
+                                            IsItemsHost="True" 
+                                            CanHorizontallyScroll="False" 
+                                            CanVerticallyScroll="True"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="Margin" Value="0,10,0,0"/>
+        </Style>
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
