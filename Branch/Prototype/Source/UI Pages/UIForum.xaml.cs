@@ -18,7 +18,9 @@ using System.Text;
 using System.Collections.ObjectModel;
 
 using InteractIVLE.Data;
-//using Microsoft.Phone.Tasks;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace InteractIVLE
 {    
@@ -26,13 +28,15 @@ namespace InteractIVLE
     {
         private string API_Key, AuthToken;
         List<Module> modules;
-        List<ForumPost> forumPosts;
-        ForumPosts obsForumPosts;
+        List<ForumPostTitle> forumPostTiles;
+        ForumPostTitles obsForumPostTitles;
+        bool loaded;
 
         public UIForum()
         {
             InitializeComponent();
-            obsForumPosts = new ForumPosts();
+            obsForumPostTitles = new ForumPostTitles();
+            loaded = false;
         }
 
         private void getForumHeadings(int moduleIndex, int forumIndex)
@@ -107,10 +111,10 @@ namespace InteractIVLE
             {
                 var Result = reader.ReadToEnd();
 
-                forumPosts = JSONParser.ParseForumThreads(Result.ToString());                
-                Deployment.Current.Dispatcher.BeginInvoke(() => {
-                    forumPosts.ToList().ForEach(obsForumPosts.Add);
-                    listBox2.ItemsSource = obsForumPosts; 
+                forumPostTiles = JSONParser.ParseForumTitles(Result.ToString());                
+                Deployment.Current.Dispatcher.BeginInvoke(() => {                    
+                    forumPostTiles.ToList().ForEach(obsForumPostTitles.Add);
+                    listBox2.ItemsSource = obsForumPostTitles; 
                 });                                
             }
         }
@@ -129,35 +133,25 @@ namespace InteractIVLE
             this.API_Key = cLAPI.APIKey;
 
             base.OnNavigatedTo(e);            
-        }        
+        }                        
 
-        private void listBox1_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        private void listBox2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            getForumHeadings(0,0); 
+            if (listBox2.SelectedIndex == -1)
+                return;
+
+            NavigationService.Navigate(new Uri("/UI Pages/UIPost.xaml?token=" + AuthToken.ToString() + "&index=" + listBox2.SelectedIndex, UriKind.Relative));
+
+            listBox2.SelectedIndex = -1;
         }
 
-        //private void sendEmail(string body)
-        //{
-        //    int chunk = 0, size = 65536, bodySize = body.Count();
-
-        //    if (size < bodySize)
-        //        size = bodySize;
-
-        //    while (chunk < body.Count())
-        //    {
-        //        EmailComposeTask emailcomposer = new EmailComposeTask();
-        //        emailcomposer.To = "misidd91@gmail.com";
-        //        emailcomposer.Subject = "WP7 Debug data";
-        //        emailcomposer.Body = body.Substring(chunk, 48800);
-        //        emailcomposer.Show();
-
-        //        if (size < 65536)
-        //            break;
-                                
-        //        chunk += 65536;
-        //        if (chunk + size > bodySize)
-        //            size = bodySize - chunk;
-        //    }
-        //}
+        private void listBox1_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        {
+            if (loaded == false)
+            {
+                getForumHeadings(0, 0);
+                loaded = true;
+            }
+        }                
     }
 }

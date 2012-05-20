@@ -52,26 +52,26 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Grid.Resources>
-                <src:ForumPosts x:Key="forumposts"/>
+                <src:ForumPostTitles x:Key="forumposts"/>
             </Grid.Resources>
             
             <ListBox Height="55" HorizontalAlignment="Left" Name="listBox1" VerticalAlignment="Top" Width="450" Style="{StaticResource HorizontalListBox}" 
-                     ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Disabled" ManipulationStarted="listBox1_ManipulationStarted" />
-            <ListBox Height="555" ItemsSource="{StaticResource forumposts}" HorizontalAlignment="Left" Margin="9,71,0,0" Name="listBox2" VerticalAlignment="Top" Width="436" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                     ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Disabled" ManipulationCompleted="listBox1_ManipulationCompleted" />
+            <ListBox Height="555" ItemsSource="{StaticResource forumposts}" HorizontalAlignment="Left" Margin="9,71,0,0" Name="listBox2" VerticalAlignment="Top" Width="436" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="listBox2_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding Votes}" />    
+                                <TextBlock Text="{Binding Votes}" Padding="5,10,5,0"/>    
                                 <TextBlock Text="Votes" />
                                 <TextBlock Text="{Binding Answers}" />
                                 <TextBlock Text="Answers" />
                             </StackPanel>
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Padding="5,0,5,0" Text="{Binding Heading}" TextWrapping="Wrap" />
-                                <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <TextBlock Padding="0,10,5,5" Text="{Binding Heading}" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
+                                <StackPanel Orientation="Horizontal" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                     <TextBlock Text="{Binding Type}" Padding="5,5,5,0"/>
-                                    <TextBlock Text="{Binding Numbers}" Padding="5,5,5,0"/>
+                                    <TextBlock Text="{Binding Number}" Padding="5,5,5,0"/>
                                     <TextBlock Text="{Binding Timestamp}" Padding="5,5,5,0"/>
                                     <TextBlock Text="{Binding Author}" Padding="5,5,5,0"/>                                    
                                 </StackPanel>

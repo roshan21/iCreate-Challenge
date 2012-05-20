@@ -29,6 +29,8 @@ namespace InteractIVLE.Data
         //    return ser.ReadObject(streamObject);
         //}
 
+        private static JArray jPosts;
+
         public static List<Module> ParseModules(String input)
         {
             JObject json = JObject.Parse(input);
@@ -58,21 +60,21 @@ namespace InteractIVLE.Data
             return modules;
         }
 
-        public static List<ForumPost> ParseForumThreads(String input)
+        public static List<ForumPostTitle> ParseForumTitles(String input)
         {
             JObject json = JObject.Parse(input);
 
-            List<ForumPost> posts = new List<ForumPost>();
+            List<ForumPostTitle> posts = new List<ForumPostTitle>();
             JArray jHeadings = json["Results"] as JArray;
 
             // Multiple headings in current forum
             foreach (var jHeading in jHeadings)
             {
-                JArray jPosts = jHeading["Threads"] as JArray;
+                jPosts = jHeading["Threads"] as JArray;
 
                 foreach (var jPost in jPosts)
                 {
-                    ForumPost newPost = new ForumPost();
+                    ForumPostTitle newPost = new ForumPostTitle();
                     newPost.Heading = jPost["PostTitle"].ToString();
                     newPost.Timestamp = jPost["PostDate_js"].ToString();
                     newPost.Type = jPost["isSurveyPost"].ToString();
@@ -86,6 +88,43 @@ namespace InteractIVLE.Data
             }
 
             return posts;
+        }
+
+        public static List<ForumPost> ParseForumThreads(int index)
+        {                                    
+            var jPost = jPosts[index];
+            List<ForumPost> posts = new List<ForumPost>();
+
+            DFS(posts, jPost);
+            return posts;
+        }
+
+        private static void DFS(List<ForumPost> posts, JToken jPost)
+        {
+            ForumPost newPost = new ForumPost();
+            newPost.Heading = jPost["PostTitle"].ToString();
+            newPost.Timestamp = jPost["PostDate_js"].ToString();
+            newPost.Type = jPost["isSurveyPost"].ToString();
+            newPost.Author = jPost["Poster"]["Name"].ToString();
+            
+            newPost.PostContent = jPost["PostBody"].ToString();
+            newPost.PostContent = Utility.StripTagsCharArray(newPost.PostContent);
+            int index_of_prev = newPost.PostContent.IndexOf("-----text of original message-----");
+            if( index_of_prev > 0 )
+                newPost.PostContent = newPost.PostContent.Substring(0, index_of_prev);
+
+            newPost.Votes = 0;
+            newPost.Answers = 0;
+            newPost.Number = 0;
+            posts.Add(newPost);
+
+            JArray jChildren = jPost["Threads"] as JArray;
+
+            if (jChildren.Count() > 0)
+            {
+                foreach (var jThread in jChildren)
+                    DFS(posts, jThread);
+            }
         }
 
         // Sample Functor to extract sub-lists from a json object
