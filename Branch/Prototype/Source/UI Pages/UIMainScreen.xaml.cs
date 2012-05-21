@@ -42,5 +42,10 @@ namespace InteractIVLE
         {
             NavigationService.Navigate(new Uri("/UI Pages/UIForum.xaml?token=" + API_Token.ToString(), UriKind.Relative));
         }
+
+        private void btn_Organizer_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/UI Pages/UIOrganizer.xaml?token=" + API_Token.ToString(), UriKind.Relative));
+        }
     }
 }

@@ -51,7 +51,7 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Button Content="Announcements" Height="80" HorizontalAlignment="Left" Margin="12,18,0,0" Name="btn_Announcements" VerticalAlignment="Top" Width="423" Click="btn_Announcements_Click" />
             <Button Content="Forum" Height="80" HorizontalAlignment="Left" Margin="12,104,0,0" Name="btn_Forum" VerticalAlignment="Top" Width="423" Click="btn_Forum_Click" />
-            <Button Content="Organizer" Height="80" HorizontalAlignment="Left" Margin="12,190,0,0" Name="btn_Organizer" VerticalAlignment="Top" Width="423" />
+            <Button Content="Organizer" Height="80" HorizontalAlignment="Left" Margin="12,190,0,0" Name="btn_Organizer" VerticalAlignment="Top" Width="423" Click="btn_Organizer_Click" />
         </Grid>
     </Grid>
  

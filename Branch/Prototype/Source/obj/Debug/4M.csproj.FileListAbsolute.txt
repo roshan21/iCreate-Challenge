@@ -20,3 +20,4 @@ C:\Users\sidd\Desktop\iCreate\4M\Branch\Prototype\Source\Bin\Debug\Newtonsoft.Js
 C:\Users\sidd\Desktop\iCreate\4M\Branch\Prototype\Source\obj\Debug\WP7.dll
 C:\Users\sidd\Desktop\iCreate\4M\Branch\Prototype\Source\obj\Debug\WP7.pdb
 C:\Users\sidd\Desktop\iCreate\4M\Branch\Prototype\Source\obj\Debug\XapCacheFile.xml
+C:\Users\sidd\Desktop\iCreate\4M\Branch\Prototype\Source\obj\Debug\UI Pages\UIOrganizer.g.i.cs

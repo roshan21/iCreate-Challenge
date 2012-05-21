@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Collections.Generic;
 
 namespace InteractIVLE
 {
@@ -15,6 +16,8 @@ namespace InteractIVLE
     {
         public const string APIKey = "L0ASX0ktkxpGQQZepWz1J";
         public const string APIUrl = "https://ivle.nus.edu.sg/api/lapi.svc";
+        public static List<String> moduleIDs;
+        public static bool moduleIDsSet;
 
         public static string LoginURL
         {

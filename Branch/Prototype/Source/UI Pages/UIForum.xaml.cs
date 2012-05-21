@@ -52,6 +52,10 @@ namespace InteractIVLE
 
         private void getModules()
         {
+            if (cLAPI.moduleIDsSet == false)
+            {
+            }
+
             String url = "https://ivle.nus.edu.sg/api/Lapi.svc/Modules?APIKey=" + API_Key + "&AuthToken=" + AuthToken + "&Duration="
                                     + "10" + "&IncludeAllInfo=true" + "&output=json";
             var webRequest = (HttpWebRequest)HttpWebRequest.Create(url);
@@ -89,9 +93,11 @@ namespace InteractIVLE
                         btn.Margin = new Thickness(3);                                              
                         btns.Add(btn);
 
+                        cLAPI.moduleIDs.Add(modules[i].ID);
                         for (int j = 0; modules[i].forums != null && j < modules[i].forums.Count(); j++ )
                             output = output + modules[i].forums[j].ForumID + " : " + modules[i].forums[j].Title + "\n";
                     }
+                    cLAPI.moduleIDsSet = true;
                     listBox1.ItemsSource = btns;                     
                 });
 
