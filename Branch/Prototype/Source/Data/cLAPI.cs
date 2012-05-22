@@ -15,9 +15,7 @@ namespace InteractIVLE
     public static class cLAPI
     {
         public const string APIKey = "L0ASX0ktkxpGQQZepWz1J";
-        public const string APIUrl = "https://ivle.nus.edu.sg/api/lapi.svc";
-        public static List<String> moduleIDs;
-        public static bool moduleIDsSet;
+        public const string APIUrl = "https://ivle.nus.edu.sg/api/lapi.svc";        
 
         public static string LoginURL
         {

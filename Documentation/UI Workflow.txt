@@ -34,3 +34,7 @@ No - Level (depth) of page
 7.) Convert List<> to Observable collection: http://stackoverflow.com/questions/2184169/add-elements-from-ilist-to-observablecollection
 8.) Dynamically load entries in a listbox: http://msdn.microsoft.com/en-us/library/cc265158(v=vs.95).aspx
 9.) Observable Collections header: http://msdn.microsoft.com/en-us/library/ms668604.aspx
+10.) Cache global data:
+	Design pattern: http://stackoverflow.com/questions/5810465/silverlight-windows-phone-7-using-static-class-for-storing-data
+	Singleton Class vs Static: http://dotnet.dzone.com/news/c-singleton-pattern-vs-static-
+	Initialization: http://stackoverflow.com/questions/5197487/how-to-initialize-class-members-in-singleton-pattern

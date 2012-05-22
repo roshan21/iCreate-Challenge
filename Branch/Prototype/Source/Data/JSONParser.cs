@@ -9,10 +9,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-
 using System.Collections.Generic;
 using System.Linq;
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -20,16 +18,7 @@ namespace InteractIVLE.Data
 {
     public class JSONParser
     {
-        //public static object Deserialize(Stream streamObject, Type serializedObjectType)
-        //{
-        //    if (serializedObjectType == null || streamObject == null)
-        //        return null;
-
-        //    DataContractJsonSerializer ser = new DataContractJsonSerializer(serializedObjectType);
-        //    return ser.ReadObject(streamObject);
-        //}
-
-        private static JArray jPosts;
+        static GlobalCache data = GlobalCache.Instance;
 
         public static List<Module> ParseModules(String input)
         {
@@ -52,7 +41,7 @@ namespace InteractIVLE.Data
                 }
                 else
                 {
-                    newModule.forums = new List<Forum>() { MapForumID().Invoke(jForumIDs) };
+                    newModule.forums = new List<ForumId>() { MapForumID().Invoke(jForumIDs) };
                 }
                 modules.Add(newModule);
             }
@@ -60,19 +49,20 @@ namespace InteractIVLE.Data
             return modules;
         }
 
-        public static List<ForumPostTitle> ParseForumTitles(String input)
+        public static List<ForumPostTitle> ParseForumTitles(String input, int forumIndex)
         {
             JObject json = JObject.Parse(input);
 
             List<ForumPostTitle> posts = new List<ForumPostTitle>();
             JArray jHeadings = json["Results"] as JArray;
+            int i = 0;
 
             // Multiple headings in current forum
             foreach (var jHeading in jHeadings)
             {
-                jPosts = jHeading["Threads"] as JArray;
+                data.modules[data.curModuleIndex].jPosts[forumIndex].Add(jHeading["Threads"] as JArray);
 
-                foreach (var jPost in jPosts)
+                foreach (var jPost in data.modules[data.curModuleIndex].jPosts[forumIndex][i])
                 {
                     ForumPostTitle newPost = new ForumPostTitle();
                     newPost.Heading = jPost["PostTitle"].ToString();
@@ -85,18 +75,42 @@ namespace InteractIVLE.Data
                                         
                     posts.Add(newPost);
                 }
+                i++;
             }
 
             return posts;
         }
 
-        public static List<ForumPost> ParseForumThreads(int index)
-        {                                    
-            var jPost = jPosts[index];
+        public static List<ForumPost> ParseForumThreads(int forumIndex, int headingIndex, int threadIndex)
+        {
+            var jPost = data.modules[data.curModuleIndex].jPosts[forumIndex][headingIndex][threadIndex];
             List<ForumPost> posts = new List<ForumPost>();
 
             DFS(posts, jPost);
             return posts;
+        }
+
+        public static List<ForumPostTitle> fetchForumTitles(int moduleIndex, int forumIndex, int headingIndex)
+        {
+            int count = data.modules[moduleIndex].jPosts[forumIndex][headingIndex].Count();
+            List<ForumPostTitle> titles = new List<ForumPostTitle>();
+            for (int i = 0; i < count; i++)            
+                titles.Add(convert(data.modules[moduleIndex].jPosts[forumIndex][headingIndex][i]));
+            return titles;
+        }
+
+        private static ForumPostTitle convert(JToken jToken)
+        {
+            ForumPostTitle newPost = new ForumPostTitle();
+            newPost.Heading = jToken["PostTitle"].ToString();
+            newPost.Timestamp = jToken["PostDate_js"].ToString();
+            newPost.Type = jToken["isSurveyPost"].ToString();
+            newPost.Author = jToken["Poster"]["Name"].ToString();
+            newPost.Votes = 0;
+            newPost.Answers = 0;
+            newPost.Number = 0;
+
+            return newPost;
         }
 
         private static void DFS(List<ForumPost> posts, JToken jPost)
@@ -137,6 +151,7 @@ namespace InteractIVLE.Data
         //{
         //    newGroup.Items = new List<DetailItem>() { MapDetailItem().Invoke(attrToken) };
         //}
+
         private static Func<JToken, Module> MapDetailItem()
         {
             return json => new Module
@@ -147,9 +162,9 @@ namespace InteractIVLE.Data
             };
         }
 
-        private static Func<JToken, Forum> MapForumID()
+        private static Func<JToken, ForumId> MapForumID()
         {
-            return json => new Forum
+            return json => new ForumId
             {
                 ForumID = (string)json["ID"],
                 Title = (string)json["Title"]                

@@ -17,24 +17,12 @@ namespace InteractIVLE.UI_Pages
 {
     public partial class UIOrganizer : PhoneApplicationPage
     {
-        private string API_Key, AuthToken;
-        List<Module> modules;
+        GlobalCache data = GlobalCache.Instance;
 
         public UIOrganizer()
         {
             InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            if (this.NavigationContext.QueryString.ContainsKey("token"))
-            {
-                this.AuthToken = this.NavigationContext.QueryString["token"];
-            }
-            this.API_Key = cLAPI.APIKey;
-
-            base.OnNavigatedTo(e);
-        }
+        }        
 
         private void callback_time_table(IAsyncResult result)
         {
@@ -56,12 +44,8 @@ namespace InteractIVLE.UI_Pages
         }
 
         private void getModules()
-        {
-            if (cLAPI.moduleIDsSet == false)
-            {
-            }
-
-            String url = "https://ivle.nus.edu.sg/api/Lapi.svc/Modules?APIKey=" + API_Key + "&AuthToken=" + AuthToken + "&Duration="
+        {            
+            String url = "https://ivle.nus.edu.sg/api/Lapi.svc/Modules?APIKey=" + data.APIKey + "&AuthToken=" + data.AuthToken + "&Duration="
                                     + "10" + "&IncludeAllInfo=true" + "&output=json";
             var webRequest = (HttpWebRequest)HttpWebRequest.Create(url);
             webRequest.BeginGetResponse(new AsyncCallback(callback_modules), webRequest);
@@ -78,18 +62,11 @@ namespace InteractIVLE.UI_Pages
             {
                 var Result = reader.ReadToEnd();                
 
-                modules = JSONParser.ParseModules(Result.ToString());
-                modules.Add(new Module("Dummy1", "ABCD", "1234"));
-                modules.Add(new Module("Dummy2", "ABCD", "1234"));
-                modules.Add(new Module("Dummy3", "ABCD", "1234"));
-
-                cLAPI.moduleIDs = new List<string>();
+                data.modules = JSONParser.ParseModules(Result.ToString());                
+                
                 //Deployment.Current.Dispatcher.BeginInvoke(() => { textBox1.Text = Result.ToString(); });
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
-                {
-                    for (int i = 0; i < modules.Count(); i++)                                           
-                        cLAPI.moduleIDs.Add(modules[i].ID);                                            
-                    cLAPI.moduleIDsSet = true;
+                {                    
                     //getTimetable();
                 });
 
@@ -100,8 +77,8 @@ namespace InteractIVLE.UI_Pages
 
         private void getTimetable()
         {
-            String url = "https://ivle.nus.edu.sg/api/Lapi.svc/Timetable_Module?APIKey=" + API_Key + "&AuthToken=" +
-                                        AuthToken + "&AcadYear=2011/2012" + "&Semester=3" + "&output=json";// +"&CourseID=" + cLAPI.moduleIDs[0];
+            String url = "https://ivle.nus.edu.sg/api/Lapi.svc/Timetable_Module?APIKey=" + data.APIKey + "&AuthToken=" +
+                                        data.AuthToken + "&AcadYear=2011/2012" + "&Semester=3" + "&output=json";            
             var webRequest = (HttpWebRequest)HttpWebRequest.Create(url);
             webRequest.BeginGetResponse(new AsyncCallback(callback_time_table), webRequest);
         }

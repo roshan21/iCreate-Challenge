@@ -65,6 +65,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\Cache.cs" />
     <Compile Include="Data\ForumPost.cs" />
     <Compile Include="Data\cLAPI.cs" />
     <Compile Include="Data\JSONParser.cs" />
