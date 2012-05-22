@@ -20,15 +20,15 @@ using InteractIVLE.Data;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace InteractIVLE
+namespace InteractIVLE.UIPages
 {    
     public partial class UIForum : PhoneApplicationPage
     {                      
-        GlobalCache data = GlobalCache.Instance;        
-        List<bool> isForumLoaded;
+        GlobalCache data;                
 
         public UIForum()
         {
+            data = GlobalCache.Instance;
             InitializeComponent();                               
         }
 
@@ -36,7 +36,16 @@ namespace InteractIVLE
         {
             if (data.modules == null || moduleIndex == -1 || moduleIndex >= data.modules.Count() || data.modules[moduleIndex].forums == null
                 || data.modules[moduleIndex].forums.Count() == 0)
+            {
+                data.forumPostTitles.Clear();
+                data.obsForumPostTitles.Clear();
+                listBox2.ItemsSource = data.obsForumPostTitles;
+                data.isForumLoaded[data.curModuleIndex] = true;
+                for (int i = 0; data.btn_modules != null && i < data.btn_modules.Count(); i++)
+                    data.btn_modules[i].IsEnabled = true;  
+
                 return;
+            }
 
             string url = " https://ivle.nus.edu.sg/api/Lapi.svc/Forum_Headings?APIKey=" + data.APIKey + "&AuthToken=" + data.AuthToken + "&Duration=0"
                                 + "&ForumID=" + data.modules[moduleIndex].forums[forumIndex].ForumID + "&IncludeThreads=true" + "&output=json";
@@ -65,7 +74,7 @@ namespace InteractIVLE
                 String output = "";
 
                 data.modules = JSONParser.ParseModules(Result.ToString());
-                isForumLoaded = new List<bool>();
+                data.isForumLoaded = new List<bool>();
 
                 //Deployment.Current.Dispatcher.BeginInvoke(() => { textBox1.Text = Result.ToString(); });
                 Deployment.Current.Dispatcher.BeginInvoke(() => {
@@ -78,12 +87,13 @@ namespace InteractIVLE
                         btn.Name = "btn_module" + (i + 1).ToString();
                         btn.Content = data.modules[i].CourseCode;
                         btn.Margin = new Thickness(3);
-                        btn.Click += new RoutedEventHandler(btn_modules_Click);                      
+                        btn.Click += new RoutedEventHandler(btn_modules_Click);
+                        btn.IsEnabled = false;
                         data.btn_modules.Add(btn);
 
                         data.modules[i].jPosts = new List<List<JArray>>();
                         data.modules[i].jPosts.Add(new List<JArray>());
-                        isForumLoaded.Add(false);
+                        data.isForumLoaded.Add(false);
 
                         for (int j = 0; data.modules[i].forums != null && j < data.modules[i].forums.Count(); j++)
                             output = output + data.modules[i].forums[j].ForumID + " : " + data.modules[i].forums[j].Title + "\n";
@@ -104,7 +114,7 @@ namespace InteractIVLE
             int myIndex = Convert.ToInt32(btnIndex) - 1;
             data.curModuleIndex = myIndex;
 
-            if (isForumLoaded[myIndex] == false)
+            if (data.isForumLoaded[myIndex] == false)
             {
                 for (int i = 0; data.btn_modules != null && i < data.btn_modules.Count(); i++)
                     data.btn_modules[i].IsEnabled = false;
@@ -140,16 +150,16 @@ namespace InteractIVLE
                         data.forumPostTitles.ToList().ForEach(data.obsForumPostTitles.Add);
                         listBox2.ItemsSource = data.obsForumPostTitles;
 
+                        data.isForumLoaded[data.curModuleIndex] = true;
                         for (int i = 0; data.btn_modules != null && i < data.btn_modules.Count(); i++)
-                            data.btn_modules[i].IsEnabled = true;
-                        isForumLoaded[data.curModuleIndex] = true;
+                            data.btn_modules[i].IsEnabled = true;                        
                     });
                 }
             }
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
+        {            
             if (!data.moduleCacheLoaded)
             {
                 for (int i = 0; data.btn_modules != null && i < data.btn_modules.Count(); i++)
@@ -158,6 +168,19 @@ namespace InteractIVLE
             }
             else
             {
+                data.btn_modules = new List<Button>();
+                for (int i = 0; i < data.modules.Count(); i++)
+                {
+                    Button btn = new Button();
+                    btn.Height = 60;
+                    btn.Width = 130;
+                    btn.FontSize = 16;
+                    btn.Name = "btn_module" + (i + 1).ToString();
+                    btn.Content = data.modules[i].CourseCode;
+                    btn.Margin = new Thickness(3);
+                    btn.Click += new RoutedEventHandler(btn_modules_Click);
+                    data.btn_modules.Add(btn);                   
+                }
                 listBox1.ItemsSource = data.btn_modules;
                 listBox2.ItemsSource = data.obsForumPostTitles;
             }
@@ -168,18 +191,18 @@ namespace InteractIVLE
             if (listBox2.SelectedIndex == -1)
                 return;
 
-            NavigationService.Navigate(new Uri("/UI Pages/UIPost.xaml?token=" + data.AuthToken.ToString() + "&index=" + listBox2.SelectedIndex, UriKind.Relative));
+            NavigationService.Navigate(new Uri("/UIPages/UIPost.xaml?token=" + data.AuthToken.ToString() + "&index=" + listBox2.SelectedIndex, UriKind.Relative));
 
             listBox2.SelectedIndex = -1;
         }
 
         private void listBox1_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
         {
-            if (isForumLoaded[4] == false)
+            if (data.isForumLoaded[4] == false)
             {
                 data.curModuleIndex = 4;
                 getForumHeadings(4, 0);
-                isForumLoaded[4] = true;                
+                data.isForumLoaded[4] = true;                
             }
         }                
     }

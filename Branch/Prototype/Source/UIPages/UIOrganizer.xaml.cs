@@ -13,7 +13,7 @@ using Microsoft.Phone.Controls;
 using System.IO;
 using InteractIVLE.Data;
 
-namespace InteractIVLE.UI_Pages
+namespace InteractIVLE.UIPages
 {
     public partial class UIOrganizer : PhoneApplicationPage
     {

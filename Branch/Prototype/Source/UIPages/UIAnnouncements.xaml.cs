@@ -13,7 +13,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using InteractIVLE.Data;
 
-namespace InteractIVLE
+namespace InteractIVLE.UIPages
 {
     public partial class UIAnnouncements : PhoneApplicationPage
     {

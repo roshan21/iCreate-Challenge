@@ -11,7 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 
-namespace InteractIVLE
+namespace InteractIVLE.UIPages
 {
     public partial class UIMainScreen : PhoneApplicationPage
     {        
@@ -22,17 +22,17 @@ namespace InteractIVLE
 
         private void btn_Announcements_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/UI Pages/UIAnnouncements.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/UIPages/UIAnnouncements.xaml", UriKind.Relative));
         }
 
         private void btn_Forum_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/UI Pages/UIForum.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/UIPages/UIForum.xaml", UriKind.Relative));
         }
 
         private void btn_Organizer_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/UI Pages/UIOrganizer.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/UIPages/UIOrganizer.xaml", UriKind.Relative));
         }
     }
 }

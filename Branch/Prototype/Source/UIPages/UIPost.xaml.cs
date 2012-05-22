@@ -14,7 +14,7 @@ using InteractIVLE.Data;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace InteractIVLE
+namespace InteractIVLE.UIPages
 {
     public partial class UIPost : PhoneApplicationPage
     {

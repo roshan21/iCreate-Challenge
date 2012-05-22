@@ -1,19 +1,19 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="InteractIVLE.UILogin"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    
+    x:Class="InteractIVLE.UIPages.UIMainScreen"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"    
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"    
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
-
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+    
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>
@@ -38,23 +38,20 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="117"/>
-            <RowDefinition Height="651*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBox Height="72" Name="textBox1" Text="interactivle 4M" Width="460" Background="Transparent" Foreground="#FFF5FCD8" />
+            <TextBlock x:Name="ApplicationTitle" Text="4M" Style="{StaticResource PhoneTextNormalStyle}" FontSize="40" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="61*" />
-                <ColumnDefinition Width="395*" />
-            </Grid.ColumnDefinitions>
-            <phone:WebBrowser HorizontalAlignment="Left" Margin="12,21,0,0" Name="wb_Login" VerticalAlignment="Top" Navigated="wb_Login_Navigated" VerticalContentAlignment="Top" Height="281" Width="438" IsScriptEnabled="True" Grid.ColumnSpan="2" />
-            <Button Content="Login" Grid.Column="1" Height="72" HorizontalAlignment="Left" Margin="77,320,0,0" Name="button1" VerticalAlignment="Top" Width="160" Click="button1_Click" Visibility="Collapsed" />
+            <Button Content="Announcements" Height="80" HorizontalAlignment="Left" Margin="12,18,0,0" Name="btn_Announcements" VerticalAlignment="Top" Width="423" Click="btn_Announcements_Click" />
+            <Button Content="Forum" Height="80" HorizontalAlignment="Left" Margin="12,104,0,0" Name="btn_Forum" VerticalAlignment="Top" Width="423" Click="btn_Forum_Click" />
+            <Button Content="Organizer" Height="80" HorizontalAlignment="Left" Margin="12,190,0,0" Name="btn_Organizer" VerticalAlignment="Top" Width="423" Click="btn_Organizer_Click" />
         </Grid>
     </Grid>
  

@@ -12,7 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using InteractIVLE.Data;
 
-namespace InteractIVLE
+namespace InteractIVLE.UIPages
 {
     public partial class UILogin : PhoneApplicationPage
     {
@@ -46,7 +46,7 @@ namespace InteractIVLE
                         //NavigationService.Navigate(new Uri("/Display.xaml?token=" + IVLE_Token.ToString(), UriKind.Relative));
                         data.APIKey = cLAPI.APIKey;
                         data.AuthToken = IVLE_Token.ToString();
-                        NavigationService.Navigate(new Uri("/UI Pages/UIMainScreen.xaml", UriKind.Relative));
+                        NavigationService.Navigate(new Uri("/UIPages/UIMainScreen.xaml", UriKind.Relative));
                     }
                 }
                 else

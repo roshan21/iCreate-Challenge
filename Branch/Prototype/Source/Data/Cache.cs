@@ -29,7 +29,8 @@ namespace InteractIVLE.Data
         public bool moduleCacheLoaded;        
         public List<bool> forumPostCacheLoaded;
 
-        public List<Button> btn_modules;        
+        public List<Button> btn_modules;
+        public List<bool> isForumLoaded;
 
         private static readonly GlobalCache instance = new GlobalCache();
 
