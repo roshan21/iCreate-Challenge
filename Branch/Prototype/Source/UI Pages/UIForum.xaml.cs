@@ -24,8 +24,7 @@ namespace InteractIVLE
 {    
     public partial class UIForum : PhoneApplicationPage
     {                      
-        GlobalCache data = GlobalCache.Instance;
-        List<Button> btn_modules = new List<Button>();        
+        GlobalCache data = GlobalCache.Instance;        
         List<bool> isForumLoaded;
 
         public UIForum()
@@ -80,7 +79,7 @@ namespace InteractIVLE
                         btn.Content = data.modules[i].CourseCode;
                         btn.Margin = new Thickness(3);
                         btn.Click += new RoutedEventHandler(btn_modules_Click);                      
-                        btn_modules.Add(btn);
+                        data.btn_modules.Add(btn);
 
                         data.modules[i].jPosts = new List<List<JArray>>();
                         data.modules[i].jPosts.Add(new List<JArray>());
@@ -90,7 +89,7 @@ namespace InteractIVLE
                             output = output + data.modules[i].forums[j].ForumID + " : " + data.modules[i].forums[j].Title + "\n";
                     }
                     data.moduleCacheLoaded = true;
-                    listBox1.ItemsSource = btn_modules;                     
+                    listBox1.ItemsSource = data.btn_modules;                     
                 });
 
                 //Deployment.Current.Dispatcher.BeginInvoke(() => { textBox1.Text = output; });                
@@ -107,8 +106,9 @@ namespace InteractIVLE
 
             if (isForumLoaded[myIndex] == false)
             {
-                getForumHeadings(myIndex, 0);
-                isForumLoaded[myIndex] = true;
+                for (int i = 0; data.btn_modules != null && i < data.btn_modules.Count(); i++)
+                    data.btn_modules[i].IsEnabled = false;
+                getForumHeadings(myIndex, 0);                
             }
             else
             {
@@ -139,6 +139,10 @@ namespace InteractIVLE
                         data.obsForumPostTitles.Clear();
                         data.forumPostTitles.ToList().ForEach(data.obsForumPostTitles.Add);
                         listBox2.ItemsSource = data.obsForumPostTitles;
+
+                        for (int i = 0; data.btn_modules != null && i < data.btn_modules.Count(); i++)
+                            data.btn_modules[i].IsEnabled = true;
+                        isForumLoaded[data.curModuleIndex] = true;
                     });
                 }
             }
@@ -147,7 +151,16 @@ namespace InteractIVLE
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             if (!data.moduleCacheLoaded)
-                getModules();            
+            {
+                for (int i = 0; data.btn_modules != null && i < data.btn_modules.Count(); i++)
+                    data.btn_modules[i].IsEnabled = false;
+                getModules();
+            }
+            else
+            {
+                listBox1.ItemsSource = data.btn_modules;
+                listBox2.ItemsSource = data.obsForumPostTitles;
+            }
         }        
 
         private void listBox2_SelectionChanged(object sender, SelectionChangedEventArgs e)

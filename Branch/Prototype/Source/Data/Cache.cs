@@ -29,6 +29,8 @@ namespace InteractIVLE.Data
         public bool moduleCacheLoaded;        
         public List<bool> forumPostCacheLoaded;
 
+        public List<Button> btn_modules;        
+
         private static readonly GlobalCache instance = new GlobalCache();
 
         private GlobalCache() 
@@ -41,6 +43,7 @@ namespace InteractIVLE.Data
             forumPosts = new List<ForumPost>();
             obsForumPosts = new ForumPosts();
             obsForumPostTitles = new ForumPostTitles();
+            btn_modules = new List<Button>();
         }
 
         public static GlobalCache Instance
