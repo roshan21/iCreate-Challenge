@@ -93,6 +93,7 @@ namespace InteractIVLE
                         btn.Margin = new Thickness(3);                                              
                         btns.Add(btn);
 
+                        cLAPI.moduleIDs = new List<string>();
                         cLAPI.moduleIDs.Add(modules[i].ID);
                         for (int j = 0; modules[i].forums != null && j < modules[i].forums.Count(); j++ )
                             output = output + modules[i].forums[j].ForumID + " : " + modules[i].forums[j].Title + "\n";
@@ -155,7 +156,7 @@ namespace InteractIVLE
         {
             if (loaded == false)
             {
-                getForumHeadings(0, 0);
+                getForumHeadings(4, 0);
                 loaded = true;
             }
         }                
