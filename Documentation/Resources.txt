@@ -13,3 +13,7 @@
 	Design pattern: http://stackoverflow.com/questions/5810465/silverlight-windows-phone-7-using-static-class-for-storing-data
 	Singleton Class vs Static: http://dotnet.dzone.com/news/c-singleton-pattern-vs-static-
 	Initialization: http://stackoverflow.com/questions/5197487/how-to-initialize-class-members-in-singleton-pattern
+11.) Web service : http://aws.amazon.com/free/
+12.) Web service for storing data sets: http://aws.amazon.com/simpledb/
+13.) Getting started with Amazon SDK for .NET: http://aws.amazon.com/articles/3051?_encoding=UTF8&jiveRedirect=1
+14.) Deploy Sample app in AWS: http://docs.amazonwebservices.com/gettingstarted/latest/awsgsg-freetier/deploy-sample-app.html
