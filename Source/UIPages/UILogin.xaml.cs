@@ -10,13 +10,16 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using InteractIVLE.Data;
 
-namespace WP7
+namespace InteractIVLE.UIPages
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class UILogin : PhoneApplicationPage
     {
+        GlobalCache data = GlobalCache.Instance;
+
         // Constructor
-        public MainPage()
+        public UILogin()
         {
             InitializeComponent();
         }
@@ -40,8 +43,10 @@ namespace WP7
                         var IVLE_Token = R.Groups[1].Value;
 
                         //5. Now navigate to the main app
-                        NavigationService.Navigate(new Uri("/Display.xaml?token=" + IVLE_Token.ToString(), UriKind.Relative));
-                        
+                        //NavigationService.Navigate(new Uri("/Display.xaml?token=" + IVLE_Token.ToString(), UriKind.Relative));
+                        data.APIKey = cLAPI.APIKey;
+                        data.AuthToken = IVLE_Token.ToString();
+                        NavigationService.Navigate(new Uri("/UIPages/UIMainScreen.xaml", UriKind.Relative));
                     }
                 }
                 else
@@ -50,11 +55,10 @@ namespace WP7
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            //1. Show the web browser and redirect user to the login pageg
-            wb_Login.IsEnabled = false;
-            wb_Login.Visibility = Visibility.Collapsed;
-           
+        {                        
+            wb_Login.IsEnabled = true;
+            wb_Login.Visibility = Visibility.Visible;
+            wb_Login.Navigate(new Uri(cLAPI.LoginURL));
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

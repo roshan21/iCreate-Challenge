@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WP7", "WP7.csproj", "{3633E991-72E1-4775-8E1E-3E1036902C86}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4M", "4M.csproj", "{3633E991-72E1-4775-8E1E-3E1036902C86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

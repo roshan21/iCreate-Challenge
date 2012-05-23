@@ -8,13 +8,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Collections.Generic;
 
-namespace WP7
+namespace InteractIVLE
 {
     public static class cLAPI
     {
         public const string APIKey = "L0ASX0ktkxpGQQZepWz1J";
-        public const string APIUrl = "https://ivle.nus.edu.sg/api/lapi.svc";
+        public const string APIUrl = "https://ivle.nus.edu.sg/api/lapi.svc";        
 
         public static string LoginURL
         {
