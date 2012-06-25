@@ -32,7 +32,7 @@ namespace InteractIVLE.UIPages
             {                
                 this.threadIndex = Convert.ToInt32(this.NavigationContext.QueryString["index"]);
             }
-
+            
             base.OnNavigatedTo(e);
         }
 
@@ -43,6 +43,24 @@ namespace InteractIVLE.UIPages
             data.forumPosts = JSONParser.ParseForumThreads(0, 0, threadIndex);
             data.forumPosts.ToList().ForEach(data.obsForumPosts.Add);
             listBox1.ItemsSource = data.obsForumPosts; 
+        }
+
+        private void btn_Upvote_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn_sender = (Button)sender;
+            StackPanel stp = (StackPanel)((StackPanel)(btn_sender.Parent)).Parent;
+            ForumPost curPost = (ForumPost)stp.DataContext;
+
+            // Update JSON DB
+        }
+
+        private void btn_Downvote_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn_sender = (Button)sender;
+            StackPanel stp = (StackPanel)((StackPanel)(btn_sender.Parent)).Parent;
+            ForumPost curPost = (ForumPost)stp.DataContext;
+
+            // Update JSON DB
         }
     }
 }

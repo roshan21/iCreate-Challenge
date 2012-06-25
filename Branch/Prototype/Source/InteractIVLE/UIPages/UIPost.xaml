@@ -35,7 +35,7 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
-    
+
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
@@ -46,11 +46,11 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="InteractIVLE 4M" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Forum" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Text="Post" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">            
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="227*" />
                 <ColumnDefinition Width="229*" />
@@ -63,25 +63,20 @@
             <ListBox ItemsSource="{StaticResource forumposts}" Height="607" HorizontalAlignment="Left" Margin="12,6,0,0" Name="listBox1" VerticalAlignment="Top" Width="438" Grid.ColumnSpan="2">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding Votes}" Padding="5,12,5,0" />
-                                    <TextBlock Text="Votes" />
-                                    <TextBlock Text="{Binding Answers}" />
-                                    <TextBlock Text="Answers" />
-                                </StackPanel>
-                                <StackPanel Orientation="Vertical" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                                    <TextBlock Padding="0,12,5,5" Text="{Binding Heading}" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
-                                    <StackPanel Orientation="Horizontal" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                                        <TextBlock Text="{Binding Type}" Padding="5,5,5,0"/>
-                                        <TextBlock Text="{Binding Number}" Padding="5,5,5,0"/>
-                                        <TextBlock Text="{Binding Timestamp}" Padding="5,5,5,0"/>
-                                        <TextBlock Text="{Binding Author}" Padding="5,5,5,0"/>
-                                    </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <Button x:Name="btn_Upvote" Click="btn_Upvote_Click" HorizontalAlignment="Stretch" Content="Up" FontSize="10"/>
+                                <TextBlock Text="{Binding Votes}" FontSize="36" HorizontalAlignment="Center"/>
+                                <Button x:Name="btn_Downvote" Click="btn_Downvote_Click" HorizontalAlignment="Stretch" Content="Down" FontSize="10"/>
+                                <TextBlock Text="Votes" />
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding PostContent}" FontSize="30"  Padding="5,8,5,5"/>
+                                <StackPanel Orientation="Horizontal" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Right">
+                                    <TextBlock Text="{Binding Timestamp}" FontSize="16" HorizontalAlignment="Right" Padding="5,5,5,0"/>
+                                    <TextBlock Text="{Binding Author}" FontSize="16" HorizontalAlignment="Right" Padding="5,5,5,0"/>
                                 </StackPanel>
                             </StackPanel>
-                            <TextBlock Text="{Binding PostContent}" Padding="5,8,5,5"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -89,7 +84,7 @@
 
         </Grid>
     </Grid>
- 
+
     <!--Sample code showing usage of ApplicationBar-->
     <!--<phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">

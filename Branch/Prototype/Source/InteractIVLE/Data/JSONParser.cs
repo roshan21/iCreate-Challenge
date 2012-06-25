@@ -134,6 +134,7 @@ namespace InteractIVLE.Data
             
             newPost.PostContent = jPost["PostBody"].ToString();
             newPost.PostContent = Utility.StripTagsCharArray(newPost.PostContent);
+            newPost.ID = jPost["ID"].ToString();
             int index_of_prev = newPost.PostContent.IndexOf("-----text of original message-----");
             if( index_of_prev > 0 )
                 newPost.PostContent = newPost.PostContent.Substring(0, index_of_prev);
