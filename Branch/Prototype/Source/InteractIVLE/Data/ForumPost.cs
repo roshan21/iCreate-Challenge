@@ -23,6 +23,7 @@ namespace InteractIVLE.Data
         public int Answers { get; set; }
         public int Number { get; set; }
         public String ID { get; set; }
+        public int threadIndex { get; set; }
 
         public ForumPostTitle()
         {

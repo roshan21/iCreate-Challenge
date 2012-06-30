@@ -25,17 +25,29 @@ namespace InteractIVLE.Data
         public ForumPostTitles obsForumPostTitles;
         public String APIKey, AuthToken;
         public int curModuleIndex;
+        public int curForumIndex;
+        public JToken curUpdatedPost;
+        public String curHeadingID;
 
         public bool moduleCacheLoaded;        
         public List<bool> forumPostCacheLoaded;
 
+        // UI for UIForum
         public List<Button> btn_modules;
         public List<bool> isForumLoaded;
 
+        // UI for UIPost
+        public List<ForumPost> uiPostTitle;
+        public ForumPosts obsUiPostTitle;
+
         private static readonly GlobalCache instance = new GlobalCache();
+
+        public int retries;
 
         private GlobalCache() 
         {
+            curForumIndex = 0;
+            retries = 0;
             moduleCacheLoaded = false;
             forumPostCacheLoaded = new List<bool>(0);
 
@@ -45,6 +57,9 @@ namespace InteractIVLE.Data
             obsForumPosts = new ForumPosts();
             obsForumPostTitles = new ForumPostTitles();
             btn_modules = new List<Button>();
+
+            uiPostTitle = new List<ForumPost>();
+            obsUiPostTitle = new ForumPosts();
         }
 
         public static GlobalCache Instance

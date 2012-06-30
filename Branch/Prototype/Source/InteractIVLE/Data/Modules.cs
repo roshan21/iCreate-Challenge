@@ -33,6 +33,10 @@ namespace InteractIVLE.Data
         public List<ForumId> forums;
         public JObject jPosts;
         public DateTime lastUpdated;
+
+        // AWS - Added by Nagappan
+        public DateTime AWSTimestamp;
+        public List<AwsEntry> awsEntries = new List<AwsEntry>();
     }
 
     public class ForumId
@@ -40,4 +44,13 @@ namespace InteractIVLE.Data
         public string ForumID { get; set; }
         public string Title { get; set; }
     }
+
+    // AWS - Added by Nagappan
+    // loads additional data from AWS
+    public class AwsEntry
+    {
+        public string ID;
+        public string votes;
+    }
+
 }

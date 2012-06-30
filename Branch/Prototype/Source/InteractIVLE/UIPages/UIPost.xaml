@@ -52,7 +52,8 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="227*" />
+                <ColumnDefinition Width="186*" />
+                <ColumnDefinition Width="41*" />
                 <ColumnDefinition Width="229*" />
             </Grid.ColumnDefinitions>
 
@@ -60,7 +61,16 @@
                 <src:ForumPosts x:Key="forumposts"/>
             </Grid.Resources>
 
-            <ListBox ItemsSource="{StaticResource forumposts}" Height="607" HorizontalAlignment="Left" Margin="12,6,0,0" Name="listBox1" VerticalAlignment="Top" Width="438" Grid.ColumnSpan="2">
+            <ListBox Height="45" ItemsSource="{StaticResource forumposts}" HorizontalAlignment="Right" Name="listBox_title" VerticalAlignment="Top" Width="341" ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                     ScrollViewer.HorizontalScrollBarVisibility="Hidden" Margin="0,10,0,0" Grid.ColumnSpan="3">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Heading}" FontSize="30" HorizontalAlignment="Stretch"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+            <ListBox ItemsSource="{StaticResource forumposts}" Height="552" HorizontalAlignment="Left" Margin="12,61,0,0" Name="listBox1" VerticalAlignment="Top" Width="438" Grid.ColumnSpan="3">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -81,7 +91,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-
+            <Button FontSize="17" Content="Reply" Height="62" HorizontalAlignment="Left" Margin="-2,2,0,0" Name="button1" VerticalAlignment="Top" Width="121" Click="button1_Click" />
         </Grid>
     </Grid>
 

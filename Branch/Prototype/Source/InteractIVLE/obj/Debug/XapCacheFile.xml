@@ -1,11 +1,13 @@
-﻿<xapCache source="C:\Users\sidd\Desktop\iCreate\4M\Branch\Prototype\Source\InteractIVLE\Bin\Debug\InteractIVLE.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="26-06-2012 01:49:19">
-  <file source="C:\Users\sidd\Desktop\iCreate\4M\Branch\Prototype\Source\InteractIVLE\Bin\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="25-06-2012 00:13:15" />
-  <file source="C:\Users\sidd\Desktop\iCreate\4M\Branch\Prototype\Source\InteractIVLE\Resources\Background.png" archivePath="Resources\Background.png" lastWriteTime="25-06-2012 00:02:36" />
-  <file source="C:\Users\sidd\Desktop\iCreate\4M\Branch\Prototype\Source\InteractIVLE\Resources\ApplicationIcon.png" archivePath="Resources\ApplicationIcon.png" lastWriteTime="25-06-2012 00:02:36" />
-  <file source="C:\Users\sidd\Desktop\iCreate\4M\Branch\Prototype\Source\InteractIVLE\obj\Debug\InteractIVLE.dll" archivePath="InteractIVLE.dll" lastWriteTime="26-06-2012 01:49:18" />
-  <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v7.1\Toolkit\Oct11\Bin\Microsoft.Phone.Controls.Toolkit.dll" archivePath="Microsoft.Phone.Controls.Toolkit.dll" lastWriteTime="06-10-2011 11:33:14" />
-  <file source="C:\Users\sidd\Desktop\iCreate\4M\Branch\Prototype\Source\InteractIVLE\lib\sl4-windowsphone71\Newtonsoft.Json.dll" archivePath="Newtonsoft.Json.dll" lastWriteTime="24-06-2012 15:40:25" />
-  <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v7.1\Libraries\Silverlight\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="15-09-2011 15:36:26" />
-  <file source="C:\Users\sidd\Desktop\iCreate\4M\Branch\Prototype\Source\InteractIVLE\Resources\SplashScreenImage.jpg" archivePath="Resources\SplashScreenImage.jpg" lastWriteTime="25-06-2012 00:02:36" />
-  <file source="C:\Users\sidd\Desktop\iCreate\4M\Branch\Prototype\Source\InteractIVLE\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="25-06-2012 00:58:05" />
+﻿<xapCache source="C:\Users\calcium\Desktop\iCreate\1\4m\Branch\Prototype\Source\InteractIVLE\Bin\Debug\InteractIVLE.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="6/29/2012 2:40:26 AM">
+  <file source="C:\Users\calcium\Desktop\iCreate\1\4m\Branch\Prototype\Source\InteractIVLE\Bin\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="6/26/2012 1:56:56 AM" />
+  <file source="C:\Users\calcium\Desktop\iCreate\1\4m\Branch\Prototype\Source\InteractIVLE\Resources\Background.png" archivePath="Resources\Background.png" lastWriteTime="6/26/2012 1:56:56 AM" />
+  <file source="C:\Users\calcium\Desktop\iCreate\1\4m\Branch\Prototype\Source\InteractIVLE\Resources\ApplicationIcon.png" archivePath="Resources\ApplicationIcon.png" lastWriteTime="6/26/2012 1:56:56 AM" />
+  <file source="C:\Users\calcium\Desktop\iCreate\1\4m\Branch\Prototype\Source\InteractIVLE\obj\Debug\InteractIVLE.dll" archivePath="InteractIVLE.dll" lastWriteTime="6/29/2012 2:40:25 AM" />
+  <file source="C:\Users\calcium\Desktop\iCreate\1\4m\Branch\Prototype\Source\InteractIVLE\Bin\Debug\AWSWP7SDK.dll" archivePath="AWSWP7SDK.dll" lastWriteTime="5/31/2012 6:01:19 PM" />
+  <file source="C:\Users\calcium\Desktop\iCreate\1\4m\Branch\Prototype\Source\InteractIVLE\Bin\Debug\Microsoft.Phone.Controls.Toolkit.dll" archivePath="Microsoft.Phone.Controls.Toolkit.dll" lastWriteTime="6/26/2012 1:56:56 AM" />
+  <file source="C:\Users\calcium\Desktop\iCreate\1\4m\Branch\Prototype\Source\InteractIVLE\lib\sl4-windowsphone71\Newtonsoft.Json.dll" archivePath="Newtonsoft.Json.dll" lastWriteTime="6/26/2012 1:56:57 AM" />
+  <file source="C:\Users\calcium\Desktop\iCreate\1\4m\Branch\Prototype\Source\InteractIVLE\Bin\Debug\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="6/26/2012 1:56:56 AM" />
+  <file source="C:\Users\calcium\Desktop\iCreate\1\4m\Branch\Prototype\Source\InteractIVLE\app.config" archivePath="app.config" lastWriteTime="6/26/2012 2:34:24 AM" />
+  <file source="C:\Users\calcium\Desktop\iCreate\1\4m\Branch\Prototype\Source\InteractIVLE\Resources\SplashScreenImage.jpg" archivePath="Resources\SplashScreenImage.jpg" lastWriteTime="6/26/2012 1:56:56 AM" />
+  <file source="C:\Users\calcium\Desktop\iCreate\1\4m\Branch\Prototype\Source\InteractIVLE\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="6/26/2012 2:13:44 AM" />
 </xapCache>

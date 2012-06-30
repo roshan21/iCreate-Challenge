@@ -15,6 +15,8 @@ using System.Collections.ObjectModel;
 
 namespace InteractIVLE
 {
+    public enum Action { Add, Subtract };
+
     public class Utility
     {
         public static String StripTagsCharArray(String source)

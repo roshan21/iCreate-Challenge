@@ -39,6 +39,16 @@ namespace InteractIVLE.UIPages
             InitializeComponent();
         }
 
+        public void updateUI()
+        {
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {                
+                data.obsForumPostTitles.Clear();
+                JSONParser.sortTitlesByTime(data.forumPostTitles).ToList().ForEach(data.obsForumPostTitles.Add);
+                listBox2.ItemsSource = data.obsForumPostTitles;  
+            });
+        }
+
         private void getForumHeadings(int moduleIndex, int forumIndex, int Duration)
         {
             //if (data.modules == null || moduleIndex == -1 || moduleIndex >= data.modules.Count() || data.modules[moduleIndex].forums == null
@@ -53,6 +63,11 @@ namespace InteractIVLE.UIPages
 
             //    return;
             //}
+
+            if (data.modules[moduleIndex].CourseName == "CP4101")
+            {
+                return;
+            }
 
             string url = " https://ivle.nus.edu.sg/api/Lapi.svc/Forum_Headings?APIKey=" + data.APIKey + "&AuthToken=" + data.AuthToken + "&Duration="
                                 + Duration.ToString() + "&ForumID=" + data.modules[moduleIndex].forums[forumIndex].ForumID + "&IncludeThreads=true" + "&output=json";
@@ -119,7 +134,7 @@ namespace InteractIVLE.UIPages
                 //Deployment.Current.Dispatcher.BeginInvoke(() => { textBox1.Text = output; });                
                 //System.Diagnostics.Debug.WriteLine(Result.ToString());
             }
-        }
+        }        
 
         private void btn_modules_Click(object sender, RoutedEventArgs e)
         {
@@ -137,11 +152,12 @@ namespace InteractIVLE.UIPages
                 data.modules[myIndex].lastUpdated = DateTime.Now;
             }
             else
-            {                               
+            {                
                 data.forumPostTitles.Clear();
                 data.obsForumPostTitles.Clear();
                 data.forumPostTitles = JSONParser.fetchForumTitles(myIndex, 0, 0);
-                data.forumPostTitles.ToList().ForEach(data.obsForumPostTitles.Add);
+                //data.forumPostTitles = JSONParser.sortTitlesByTime(data.forumPostTitles);
+                JSONParser.sortTitlesByTime(data.forumPostTitles).ToList().ForEach(data.obsForumPostTitles.Add);
                 listBox2.ItemsSource = data.obsForumPostTitles;
             }
         }
@@ -158,13 +174,20 @@ namespace InteractIVLE.UIPages
                 var Result = reader.ReadToEnd();
 
                 if (data.modules[data.curModuleIndex].forums.Count() == 1)
-                {
+                {                   
                     data.forumPostTitles = JSONParser.ParseForumTitles(Result.ToString(), 0);
+                    //Added by Roshan for curHeadingID
+                    data.curHeadingID = data.modules[data.curModuleIndex].jPosts["Results"][0]["ID"].ToString();
+                    //End - Added by Roshan for curHeadingID
+                    // AWS
+                    JSONParser.AmazonSyncPostTitleVotes(this);
+
                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                     {
+                        //data.forumPostTitles = JSONParser.sortTitlesByTime(data.forumPostTitles);
                         data.obsForumPostTitles.Clear();
-                        data.forumPostTitles.ToList().ForEach(data.obsForumPostTitles.Add);
-                        listBox2.ItemsSource = data.obsForumPostTitles;
+                        JSONParser.sortTitlesByTime(data.forumPostTitles).ToList().ForEach(data.obsForumPostTitles.Add);
+                        listBox2.ItemsSource = data.obsForumPostTitles;                        
 
                         data.isForumLoaded[data.curModuleIndex] = true;
                         for (int i = 0; data.btn_modules != null && i < data.btn_modules.Count(); i++)
@@ -174,7 +197,7 @@ namespace InteractIVLE.UIPages
                     });
                 }
             }
-        }
+        }        
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
@@ -200,6 +223,9 @@ namespace InteractIVLE.UIPages
                     data.btn_modules.Add(btn);
                 }
                 listBox1.ItemsSource = data.btn_modules;
+                data.forumPostTitles = JSONParser.fetchForumTitles(data.curModuleIndex, data.curForumIndex, 0);                
+                data.obsForumPostTitles.Clear();
+                JSONParser.sortTitlesByTime(data.forumPostTitles).ToList().ForEach(data.obsForumPostTitles.Add);
                 listBox2.ItemsSource = data.obsForumPostTitles;
             }
         }
@@ -209,13 +235,15 @@ namespace InteractIVLE.UIPages
             if (listBox2.SelectedIndex == -1)
                 return;
 
-            NavigationService.Navigate(new Uri("/UIPages/UIPost.xaml?token=" + data.AuthToken.ToString() + "&index=" + listBox2.SelectedIndex, UriKind.Relative));
+            int indexToGo = data.obsForumPostTitles[listBox2.SelectedIndex].threadIndex;
+            NavigationService.Navigate(new Uri("/UIPages/UIPost.xaml?token=" + data.AuthToken.ToString() + "&index=" + indexToGo.ToString(), UriKind.Relative));
 
             listBox2.SelectedIndex = -1;
         }
 
         // For "Refresh" feature
 
+        #region reFetch
         private void customizeListBox()
         {
             if (alreadyHookedScrollEvents)
@@ -238,14 +266,14 @@ namespace InteractIVLE.UIPages
                         group.CurrentStateChanging += new EventHandler<VisualStateChangedEventArgs>(group_CurrentStateChanging);
                     }
 
-                    VisualStateGroup vgroup = FindVisualState(element, "VerticalCompression");                    
+                    VisualStateGroup vgroup = FindVisualState(element, "VerticalCompression");
                     if (vgroup != null)
                     {
                         vgroup.CurrentStateChanging += new EventHandler<VisualStateChangedEventArgs>(vgroup_CurrentStateChanging);
-                    }        
+                    }
                 }
             }
-        }        
+        }
 
         private void listBox2_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
         {
@@ -253,13 +281,13 @@ namespace InteractIVLE.UIPages
             {
                 ReleaseBounce();
             }
-        }        
+        }
 
         private void vgroup_CurrentStateChanging(object sender, VisualStateChangedEventArgs e)
         {
             if (e.NewState.Name == "CompressionTop")
             {
-                ProcessBounce();                
+                ProcessBounce();
                 int myIndex = data.curModuleIndex;
                 for (int i = 0; data.btn_modules != null && i < data.btn_modules.Count(); i++)
                     data.btn_modules[i].IsEnabled = false;
@@ -275,33 +303,33 @@ namespace InteractIVLE.UIPages
 
             if (e.NewState.Name == "CompressionBottom")
             {
-                ProcessBounce();                
+                ProcessBounce();
             }
 
             if (e.NewState.Name == "NoVerticalCompression")
             {
-                ReleaseBounce();                
+                ReleaseBounce();
             }
         }
 
         private void group_CurrentStateChanging(object sender, VisualStateChangedEventArgs e)
         {
             if (e.NewState.Name == "Scrolling")
-            {                                
+            {
             }
             else
-            {                
+            {
             }
         }
 
         private void ReleaseBounce()
         {
-            _isBouncy = false;            
+            _isBouncy = false;
         }
 
         private void ProcessBounce()
         {
-            _isBouncy = true;            
+            _isBouncy = true;
         }
 
         private UIElement FindElementRecursive(FrameworkElement parent, Type targetType)
@@ -337,6 +365,13 @@ namespace InteractIVLE.UIPages
                     return group;
 
             return null;
+        } 
+        #endregion
+
+        private void button_new_post_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/UIPages/UINewPost.xaml", UriKind.Relative));
         }
+
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Amazon;
 
 namespace InteractIVLE
 {
@@ -131,5 +132,10 @@ namespace InteractIVLE
         }
 
         #endregion
+    }
+
+    internal static class SimpleDB
+    {
+        internal static Amazon.SimpleDB.AmazonSimpleDB Client = AWSClientFactory.CreateAmazonSimpleDBClient();
     }
 }

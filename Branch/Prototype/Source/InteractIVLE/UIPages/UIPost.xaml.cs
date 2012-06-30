@@ -42,7 +42,36 @@ namespace InteractIVLE.UIPages
             data.obsForumPosts.Clear();
             data.forumPosts = JSONParser.ParseForumThreads(0, 0, threadIndex);
             data.forumPosts.ToList().ForEach(data.obsForumPosts.Add);
-            listBox1.ItemsSource = data.obsForumPosts; 
+            listBox1.ItemsSource = data.obsForumPosts;
+
+            JSONParser.AmazonSyncPostVotes(threadIndex, this);
+
+            data.obsUiPostTitle.Clear();
+            data.uiPostTitle.Clear();
+            data.uiPostTitle.Add(data.forumPosts[0]);
+            data.uiPostTitle.ForEach(data.obsUiPostTitle.Add);
+            listBox_title.ItemsSource = data.obsUiPostTitle;
+        }
+
+        public void updateUI()
+        {
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {
+                data.obsForumPosts.Clear();
+                data.forumPosts = JSONParser.ParseForumThreads(0, 0, threadIndex);
+                data.forumPosts.ToList().ForEach(data.obsForumPosts.Add);
+
+                listBox1.ItemsSource = data.obsForumPosts;
+            });
+        }
+
+        private void localUpdateUI()
+        {
+            data.obsForumPosts.Clear();
+            data.forumPosts = JSONParser.ParseForumThreads(0, 0, threadIndex);
+            data.forumPosts.ToList().ForEach(data.obsForumPosts.Add);
+
+            listBox1.ItemsSource = data.obsForumPosts;
         }
 
         private void btn_Upvote_Click(object sender, RoutedEventArgs e)
@@ -52,6 +81,13 @@ namespace InteractIVLE.UIPages
             ForumPost curPost = (ForumPost)stp.DataContext;
 
             // Update JSON DB
+            JToken jPost = data.modules[data.curModuleIndex].jPosts["Results"][0]["Threads"][threadIndex];             
+            data.modules[data.curModuleIndex].jPosts["Results"][0]["Threads"][threadIndex] = 
+                JSONParser.updateDB(jPost,curPost.ID, Action.Add);
+            curPost = JSONParser.convertP(data.curUpdatedPost);
+            JSONParser.AmazonUpdateVotes((curPost.ID), Action.Add, curPost.Votes);
+
+            localUpdateUI();
         }
 
         private void btn_Downvote_Click(object sender, RoutedEventArgs e)
@@ -61,6 +97,18 @@ namespace InteractIVLE.UIPages
             ForumPost curPost = (ForumPost)stp.DataContext;
 
             // Update JSON DB
+            JToken jPost = data.modules[data.curModuleIndex].jPosts["Results"][0]["Threads"][threadIndex];
+            data.modules[data.curModuleIndex].jPosts["Results"][0]["Threads"][threadIndex] =
+                JSONParser.updateDB(jPost, curPost.ID, Action.Subtract);
+            curPost = JSONParser.convertP(data.curUpdatedPost);
+            JSONParser.AmazonUpdateVotes((curPost.ID), Action.Add, curPost.Votes);
+
+            localUpdateUI();
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/UIPages/UINewReply1.xaml", UriKind.Relative));
         }
     }
 }

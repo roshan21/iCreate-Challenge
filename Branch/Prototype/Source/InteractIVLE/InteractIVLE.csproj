@@ -48,6 +48,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AWSWP7SDK, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ada2d2c453e6043a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Interop" />
@@ -85,6 +88,12 @@
     <Compile Include="UIPages\UIMainScreen.xaml.cs">
       <DependentUpon>UIMainScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UIPages\UINewPost.xaml.cs">
+      <DependentUpon>UINewPost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIPages\UINewReply1.xaml.cs">
+      <DependentUpon>UINewReply1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UIPages\UIOrganizer.xaml.cs">
       <DependentUpon>UIOrganizer.xaml</DependentUpon>
     </Compile>
@@ -100,6 +109,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
@@ -122,6 +132,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UIPages\UIMainScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIPages\UINewPost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIPages\UINewReply1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
