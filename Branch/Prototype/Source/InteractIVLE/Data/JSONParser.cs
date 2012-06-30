@@ -323,8 +323,8 @@ namespace InteractIVLE.Data
             ReplaceableAttribute attributesFour;
             ReplaceableAttribute attributesFive = new ReplaceableAttribute().WithName("root").WithValue("null");
 
-            int forumIndex = 0;
-            int i = 0;
+            //int forumIndex = 0;
+            //int i = 0;
 
             List<ReplaceableItem> replacableItem = request.Items;
             int t = 0;
@@ -360,8 +360,8 @@ namespace InteractIVLE.Data
             ReplaceableAttribute attributesFour;
             ReplaceableAttribute attributesFive = new ReplaceableAttribute().WithName("root").WithValue(data.modules[data.curModuleIndex].jPosts["Results"][0]["Threads"][threadIndex]["ID"].ToString());
 
-            int forumIndex = 0;
-            int i = 0;
+            //int forumIndex = 0;
+            //int i = 0;
 
             List<ReplaceableItem> replacableItem = request.Items;
             int t = 0;

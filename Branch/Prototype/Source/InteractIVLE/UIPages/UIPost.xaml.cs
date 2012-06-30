@@ -108,7 +108,7 @@ namespace InteractIVLE.UIPages
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/UIPages/UINewReply1.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/UIPages/UIReply.xaml", UriKind.Relative));
         }
     }
 }

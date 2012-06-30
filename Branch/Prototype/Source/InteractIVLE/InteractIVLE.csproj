@@ -91,8 +91,8 @@
     <Compile Include="UIPages\UINewPost.xaml.cs">
       <DependentUpon>UINewPost.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UIPages\UINewReply1.xaml.cs">
-      <DependentUpon>UINewReply1.xaml</DependentUpon>
+    <Compile Include="UIPages\UIReply.xaml.cs">
+      <DependentUpon>UIReply.xaml</DependentUpon>
     </Compile>
     <Compile Include="UIPages\UIOrganizer.xaml.cs">
       <DependentUpon>UIOrganizer.xaml</DependentUpon>
@@ -139,7 +139,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UIPages\UINewReply1.xaml">
+    <Page Include="UIPages\UIReply.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
